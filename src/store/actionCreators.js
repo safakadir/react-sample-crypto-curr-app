@@ -4,3 +4,10 @@ export const acSetAllCoinAssets = (assets) => {
         payload: assets
     }
 }
+
+export const acAppendCoinAssets = (assets) => {
+    return {
+        type: 'coinAssets/append',
+        payload: assets
+    }
+}
