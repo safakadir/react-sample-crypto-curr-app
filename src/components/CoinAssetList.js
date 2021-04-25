@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchCoinAssets } from '../store/coinAssetsSlice'
 
 const CoinAssetList = () => {
+
     const dispatch = useDispatch()
     const coinAssets = useSelector(state => state.coinAssets)
     useEffect(() => {
