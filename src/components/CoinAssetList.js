@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import { fetchCoinAssets } from '../store/coinAssetsSlice'
 
 import Table from './fundamental/Table'
@@ -19,7 +20,9 @@ const CoinAssetList = () => {
     const [search, setSearch] = useState('')
     const coinAssets = useSelector(state => state.coinAssets)
 
+    const history = useHistory()
     const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(fetchCoinAssets(0, search))
         setCount(0)
@@ -34,9 +37,13 @@ const CoinAssetList = () => {
         setSearch(search)
     }
 
+    const handleCoinClick = (coinAsset) => {
+        history.push('/coin/'+coinAsset.id)
+    }
+
     return (
         <div className>
-            <Table items={coinAssets} columns={TABLE_COLUMNS} />
+            <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} />
             <button type="button" class="btn btn-outline-primary" onClick={handleLoadMore}>Load More</button>
         </div>
     );

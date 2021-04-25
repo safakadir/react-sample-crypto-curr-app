@@ -1,7 +1,12 @@
+import { useLocation } from "react-router"
+
 const CoinAssetDetail = () => {
+    const location = useLocation()
+
     return (
         <div>
-            CoinAssetDetail
+            <h1>CoinAssetDetail</h1>
+            <p>{location.pathname}</p>
         </div>
     )
 }

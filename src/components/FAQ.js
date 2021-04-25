@@ -1,7 +1,7 @@
 const FAQ = () => {
     return (
         <div>
-            FAQ
+            <h1>FAQ</h1>
         </div>
     )
 }

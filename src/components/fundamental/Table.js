@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-const Table = ({items, columns}) => {
+const Table = ({items, columns, onRowClick}) => {
     return (
         <table className="table">
             <thead>
@@ -12,7 +12,7 @@ const Table = ({items, columns}) => {
             </thead>
             <tbody>
                 {items.map(item => (
-                    <tr key={item.id}>
+                    <tr key={item.id} onClick={() => onRowClick(item)}>
                         {columns.map(column => (
                             <td key={`${item.id}_${column.key}`}>
                                 {!!column.enhance ? column.enhance(item[column.key]) : item[column.key]}
