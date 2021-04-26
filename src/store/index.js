@@ -11,7 +11,7 @@ import reducers from './reducers'
 }*/
 
 const initialState = {
-    coinAssets: [],
+    coinAssets: {loading: false, error: null, items: []},
     //showAdd: getPersisted('showAdd', false)
 }
 

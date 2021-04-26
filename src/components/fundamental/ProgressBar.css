@@ -1,3 +1,8 @@
+.pb-container {
+  position: relative;
+  margin-top: -15px;
+}
+
 .slider{
     position:absolute;
     width:100%;

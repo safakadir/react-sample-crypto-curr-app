@@ -3,8 +3,7 @@ import ProgressBar from './ProgressBar'
 
 const Table = ({items, columns, onRowClick, loading}) => {
     return (
-        <div style={{position: 'relative'}}>
-        { loading && <ProgressBar /> }
+        <>
         <table className="table table-responsive table-hover">
             <thead>
                 <tr>
@@ -25,7 +24,8 @@ const Table = ({items, columns, onRowClick, loading}) => {
                 ))}
             </tbody>
         </table>
-        </div>
+        { loading && <ProgressBar /> }
+        </>
     )
 }
 

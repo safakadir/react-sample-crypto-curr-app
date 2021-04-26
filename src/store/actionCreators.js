@@ -11,3 +11,16 @@ export const acAppendCoinAssets = (assets) => {
         payload: assets
     }
 }
+
+export const acLoadingCoinAssets = () => {
+    return {
+        type: 'coinAssets/loading'
+    }
+}
+
+export const acErrorCoinAssets = (error) => {
+    return {
+        type: 'coinAssets/error',
+        payload: error
+    }
+}
