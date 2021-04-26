@@ -22,7 +22,7 @@ const Select = ({ items, value, onSelect, visualizor }) => {
             </button>
             <ul className="dropdown-menu" style={{display: open ? 'block' : 'none'}}>
                 { items.map(item => (
-                    <li key={item.id}><a className="dropdown-item fs-6" onClick={() => handleSelect(item)}>{ visualizor(item) }</a></li>
+                    <li key={item.id}><span className="dropdown-item fs-6 clickable" onClick={() => handleSelect(item)}>{ visualizor(item) }</span></li>
                 ))}
             </ul>
         </div>
