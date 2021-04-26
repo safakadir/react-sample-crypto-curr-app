@@ -3,8 +3,9 @@ import { acAppendCoinAssets, acErrorCoinAssets, acLoadingCoinAssets, acSetAllCoi
 import utils from '../utils'
 
 const BATCH_LIMIT = 10
+const INITIAL_STATE = { loading: false, error: null, items: [] }
 
-const coinAssetsReducer = (state = [], action) => {
+const coinAssetsReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case 'coinAssets/loading':
             return { ...state, loading: true, error: null }

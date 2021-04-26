@@ -24,3 +24,16 @@ export const acErrorCoinAssets = (error) => {
         payload: error
     }
 }
+
+export const acNewPage = (pathname) => {
+    return {
+        type: 'navigation/newPage',
+        payload: pathname
+    }
+}
+export const acAppendPageTitle = (appendix) => {
+    return {
+        type: 'navigation/appendPageTitle',
+        payload: appendix
+    }
+}

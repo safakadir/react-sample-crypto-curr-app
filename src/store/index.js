@@ -10,13 +10,11 @@ import reducers from './reducers'
     return JSON.parse(value); 
 }*/
 
-const initialState = {
-    coinAssets: {loading: false, error: null, items: []},
-    //showAdd: getPersisted('showAdd', false)
-}
+// const initialState = {
+//     coinAssets: { loading: false, error: null, items: [] },
+//     navigation: { path: '/', title: '' }
+// }
 
-console.log(initialState)
-
-const store = createStore(reducers, initialState, composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store

@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import coinAssetsReducers from './coinAssetsSlice'
+import coinAssetsReducer from './coinAssetsSlice'
+import navigationReducer from './navigationSlice'
 
 export default combineReducers({
-    coinAssets: coinAssetsReducers
+    coinAssets: coinAssetsReducer,
+    navigation: navigationReducer
 })
