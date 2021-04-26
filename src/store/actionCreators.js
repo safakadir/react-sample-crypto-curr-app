@@ -62,9 +62,9 @@ export const acErrorRate = (error) => {
         payload: error
     }
 }
-export const acSetCurrencyId = (currencyId) => {
+export const acSetCurrency = (currencyId) => {
     return {
-        type: 'currency/setCurrencyId',
+        type: 'currency/setCurrency',
         payload: currencyId
     }
 }

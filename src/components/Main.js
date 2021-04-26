@@ -9,7 +9,7 @@ import About from './About'
 import Toast from './fundamental/Toast'
 import Select from './fundamental/Select'
 
-import { acClearErrorCoinAssets, acNewPage, acSetCurrencyId } from '../store/actionCreators'
+import { acClearErrorCoinAssets, acNewPage, acSetCurrency } from '../store/actionCreators'
 import { fetchRate } from '../store/currencySlice'
 import utils from '../utils'
 import constants from '../constants'
@@ -31,8 +31,7 @@ const Main = () => {
     }
 
     const handleCurrencySelect = (currency) => {
-      console.log("SELECT:"+currency.id)
-      dispatch(acSetCurrencyId(currency.id))
+      dispatch(acSetCurrency(currency.id))
       dispatch(fetchRate(currency.id))
     }
 

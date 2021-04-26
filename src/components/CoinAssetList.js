@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import constants from '../constants'
 import { acSetCurrentCoinAsset } from '../store/actionCreators'
 import { fetchCoinAssets } from '../store/coinAssetsSlice'
 
@@ -15,8 +14,7 @@ const CoinAssetList = () => {
     const coinAssets = useSelector(state => state.coinAssets.items)
     const assetsLoading = useSelector(state => state.coinAssets.loading)
     const rateLoading = useSelector(state => state.currency.loading)
-    const selectedCurrencyId = useSelector(state => state.currency.selectedCurrencyId)
-    const selectedCurrency = constants.currencies.find(c => c.id === selectedCurrencyId)
+    const selectedCurrency = useSelector(state => state.currency.selectedCurrency)
     const currentRate = useSelector(state => state.currency.currentRate)
 
     const history = useHistory()

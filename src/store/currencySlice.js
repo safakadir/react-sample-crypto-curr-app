@@ -2,10 +2,14 @@ import axios from 'axios'
 import constants from '../constants'
 import { acErrorRate, acLoadingRate, acSetRate } from './actionCreators'
 
-const INITIAL_STATE = { selectedCurrencyId: constants.baseCurrencyId,
-                        currentRate: constants.unitCurrencyRate,
-                        loading: false,
-                        error: null }
+const findCurrency = (currencyId) => {
+    return constants.currencies.find(c => c.id === currencyId)
+}
+
+const INITIAL_STATE = { selectedCurrency: findCurrency(constants.baseCurrencyId),
+    currentRate: constants.unitCurrencyRate,
+    loading: false,
+    error: null }
 
 const currencyReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
@@ -13,8 +17,8 @@ const currencyReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: true, error: null }
         case 'currency/error':
             return { ...state, loading: false, error: action.payload }
-        case 'currency/setCurrencyId':
-            return {...state, selectedCurrencyId: action.payload}
+        case 'currency/setCurrency':
+            return {...state, selectedCurrency: findCurrency(action.payload)}
         case 'currency/setRate':
             return {...state, currentRate: action.payload, loading: false, error: null}
         default:
