@@ -1,15 +1,20 @@
 import axios from 'axios'
 import constants from '../constants'
+import utils from '../utils'
 import { acErrorRate, acLoadingRate, acSetRate } from './actionCreators'
 
 const findCurrency = (currencyId) => {
     return constants.currencies.find(c => c.id === currencyId)
 }
 
-const INITIAL_STATE = { selectedCurrency: findCurrency(constants.baseCurrencyId),
+const initialCurrencyId = utils.readStorage('currencyId', constants.baseCurrencyId)
+
+const INITIAL_STATE = { 
+    selectedCurrency: findCurrency(initialCurrencyId),
     currentRate: constants.unitCurrencyRate,
     loading: false,
-    error: null }
+    error: null
+}
 
 const currencyReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {

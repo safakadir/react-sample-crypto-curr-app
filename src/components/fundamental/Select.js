@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-const Select = ({ items, onSelect, visualizor }) => {
+const Select = ({ items, value, onSelect, visualizor }) => {
     const [open, setOpen] = useState(false)
-    const [selectedItem, setSelectedItem] = useState(items[0])
+    const [selectedItem, setSelectedItem] = useState(value)
 
     const handleSelect = (item) => {
         setSelectedItem(item)

@@ -11,6 +11,17 @@ const utils = {
     getSafeValue: (obj, key) => {
         if(!obj) return ''
         return obj[key]
+    },
+
+    readStorage: (key, defaultValue) => {
+        const value = localStorage.getItem(key)
+        if(value === undefined || value === null) return defaultValue
+        try {
+            return JSON.parse(value)
+        }
+        catch(e) {
+            return value
+        }
     }
 }
 
