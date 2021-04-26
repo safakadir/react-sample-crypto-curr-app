@@ -1,9 +1,9 @@
-# Getting Started with Crypto Curr App
+# Crypto Curr App
 
-Crypto Curr application is a sample React application that shows list and details of crypto assets, by consuming [https://docs.coincap.io/](CoinCap API).
+Crypto Curr application is a sample React application that shows list and details of crypto assets, by consuming [CoinCap API](https://docs.coincap.io/).
 
 
-## Scripts
+## Scripts to Get Started
 
 ### `npm install`
 
