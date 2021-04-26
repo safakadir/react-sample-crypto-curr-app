@@ -4,6 +4,8 @@ import { useLocation } from "react-router"
 import { acAppendPageTitle } from '../store/actionCreators'
 import { fetchSingleAsset } from '../store/coinAssetsSlice'
 import utils from '../utils'
+import CoinHistoryChart from './CoinHistoryChart'
+
 import ProgressBar from './fundamental/ProgressBar'
 
 const CoinAssetDetail = () => {
@@ -12,7 +14,9 @@ const CoinAssetDetail = () => {
 
     const assetId = utils.lastPathPiece(location.pathname)
     const asset = useSelector(state => state.coinAssets.currentItem)
-    const loading = useSelector(state => state.coinAssets.loading)
+    const assetsLoading = useSelector(state => state.coinAssets.loading)
+    const rateLoading = useSelector(state => state.currency.loading)
+    const loading = assetsLoading || rateLoading
 
     const selectedCurrency = useSelector(state => state.currency.selectedCurrency)
     const currentRate = useSelector(state => state.currency.currentRate)
@@ -31,7 +35,7 @@ const CoinAssetDetail = () => {
     return (
         <>
             { loading && <ProgressBar className="mt-2" /> } 
-            { !!asset && (<>
+            { !!asset && (<div className="pt-1 pb-5">
                 <div className="d-flex flex-column flex-md-row align-items-center justify-content-around">
                     <div className="d-flex flex-column align-items-center">
                         <h1>#{asset.rank}</h1>
@@ -62,7 +66,8 @@ const CoinAssetDetail = () => {
                         <p>{asset.volumeUsd24Hr ? utils.convertCurrency(asset.volumeUsd24Hr, currentRate.rateUsd, selectedCurrency.cSymbol) : ''}</p>
                     </div>
                 </div>
-            </>)}
+                <CoinHistoryChart title="Last 7 days" asset={asset} />
+            </div>)}
         </>
     )
 }
