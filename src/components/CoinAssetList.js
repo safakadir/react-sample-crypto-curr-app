@@ -3,9 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { fetchCoinAssets } from '../store/coinAssetsSlice'
 
+import SearchInput from './fundamental/SearchInput'
 import Table from './fundamental/Table'
-
-//import SearchInput from './fundamental/SearchInput'
 
 const TABLE_COLUMNS = [
     { key: 'rank', title: 'Rank' },
@@ -42,9 +41,12 @@ const CoinAssetList = () => {
     }
 
     return (
-        <div className>
-            <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} />
-            <button type="button" class="btn btn-outline-primary" onClick={handleLoadMore}>Load More</button>
+        <div style={{maxWidth:750, margin: 'auto', width: '50% !important'}}>
+            <SearchInput onSearch={handleSearch} />
+            <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} loading={true} />
+            <div className="text-center">
+                <button type="button" className="btn btn-primary" onClick={handleLoadMore}>Load More</button>
+            </div>
         </div>
     );
 }

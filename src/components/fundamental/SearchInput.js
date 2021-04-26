@@ -1,57 +1,38 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 
-// import { makeStyles } from '@material-ui/core/styles';
-// import { Paper, InputBase, IconButton, TextField } from '@material-ui/core'
-// import SearchIcon from '@material-ui/icons/Search';
+const SearchInput = ({ onSearch }) => {
+    const [search, setSearch] = useState('')
+    const [lastSearched, setLastSearched] = useState('')
+    const [dirty, setDirty] = useState(false)
 
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//       padding: '2px 4px',
-//       display: 'flex',
-//       alignItems: 'center',
-//       width: 400,
-//     },
-//     input: {
-//       marginLeft: theme.spacing(1),
-//       flex: 1,
-//     },
-//     iconButton: {
-//       padding: 10,
-//     },
-//     divider: {
-//       height: 28,
-//       margin: 4,
-//     },
-//   }));
+    const handleChange = (e) => {
+        setSearch(e.target.value)
+        setDirty(e.target.value !== lastSearched)
+        //console.log(`search:{}, lastSearched:{}, dirty:{}`)
+    }
 
-// const SearchInput = ({ onClick }) => {
-//     const classes = useStyles();
+    const handleKey = (e) => {
+        if(e.keyCode === 13) {
+            e.preventDefault()
+            onSearch(search)
+            setLastSearched(search)
+            setSearch('')
+            setDirty(false)
+        }
+    }
 
-//     const [search, setSearch] = useState('')
+    return (
+      <form>
+        <input
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            value={search}
+            onChange={handleChange}
+            onKeyDown={handleKey} />
+        <p className={'input-hint' + (!dirty ? ' invisible' : '')} >Press Enter to Search</p>
+      </form>
+    );
+}
 
-//     const handleSearch = (e) => {
-//         setSearch(e.target.value)
-//     }
-
-//     const handleClick = (e) => {
-//         e.preventDefault()
-//         onClick(search)
-//     }
-
-//     return (
-//       <>
-//         <TextField
-//           className={classes.input}
-//           placeholder="Search Coin Assets"
-//           value={search}
-//           onChange={handleSearch}
-//           fullWidth
-//         />
-//         <IconButton type="submit" className={classes.iconButton} onClick={handleClick}>
-//           <SearchIcon />
-//         </IconButton>
-//       </>
-//     );
-// }
-
-// export default SearchInput
+export default SearchInput

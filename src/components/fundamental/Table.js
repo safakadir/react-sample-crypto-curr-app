@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types'
+import ProgressBar from './ProgressBar'
 
-const Table = ({items, columns, onRowClick}) => {
+const Table = ({items, columns, onRowClick, loading}) => {
     return (
-        <table className="table">
+        <div style={{position: 'relative'}}>
+        { loading && <ProgressBar /> }
+        <table className="table table-responsive table-hover">
             <thead>
                 <tr>
                     {columns.map(column => (
@@ -12,7 +15,7 @@ const Table = ({items, columns, onRowClick}) => {
             </thead>
             <tbody>
                 {items.map(item => (
-                    <tr key={item.id} onClick={() => onRowClick(item)}>
+                    <tr key={item.id} onClick={() => !!onRowClick && onRowClick(item)} className={!!onRowClick ? 'clickable' : ''}>
                         {columns.map(column => (
                             <td key={`${item.id}_${column.key}`}>
                                 {!!column.enhance ? column.enhance(item[column.key]) : item[column.key]}
@@ -22,12 +25,18 @@ const Table = ({items, columns, onRowClick}) => {
                 ))}
             </tbody>
         </table>
+        </div>
     )
 }
 
 Table.propTypes = {
     items: PropTypes.array.isRequired,
     columns: PropTypes.array.isRequired,
+    loading: PropTypes.bool
+}
+
+Table.defaultProps = {
+    loading: false
 }
 
 export default Table

@@ -19,7 +19,7 @@ function App() {
         <div className="row">
           <Header />
           <Sidebar />
-          <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div className="col-xs-12 col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <Switch>
               <Route path="/" exact component={CoinAssetList} />
               <Route path="/coin/:id" component={CoinAssetDetail} />
