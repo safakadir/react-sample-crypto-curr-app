@@ -1,6 +1,6 @@
 export const acSetAllCoinAssets = (assets) => {
     return {
-        type: 'coinAssets/setAll',
+        type: 'coinAssets/setAssets',
         payload: assets
     }
 }
@@ -14,7 +14,7 @@ export const acSetCurrentCoinAsset = (asset) => {
 
 export const acAppendCoinAssets = (assets) => {
     return {
-        type: 'coinAssets/append',
+        type: 'coinAssets/appendAssets',
         payload: assets
     }
 }
@@ -48,5 +48,29 @@ export const acAppendPageTitle = (appendix) => {
     return {
         type: 'navigation/appendPageTitle',
         payload: appendix
+    }
+}
+
+export const acLoadingRate = () => {
+    return {
+        type: 'currency/loading'
+    }
+}
+export const acErrorRate = (error) => {
+    return {
+        type: 'currency/error',
+        payload: error
+    }
+}
+export const acSetCurrencyId = (currencyId) => {
+    return {
+        type: 'currency/setCurrencyId',
+        payload: currencyId
+    }
+}
+export const acSetRate = (rate) => {
+    return {
+        type: 'currency/setRate',
+        payload: rate
     }
 }

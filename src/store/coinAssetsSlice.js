@@ -3,7 +3,7 @@ import { acAppendCoinAssets, acErrorCoinAssets, acLoadingCoinAssets, acSetAllCoi
 import utils from '../utils'
 
 const BATCH_LIMIT = 10
-const INITIAL_STATE = { loading: false, error: null, items: [], currentItem: null }
+const INITIAL_STATE = { loading: false, error: null, currentItem: null, items: [] }
 
 const coinAssetsReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
@@ -13,9 +13,9 @@ const coinAssetsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: false, error: action.payload }
         case 'coinAssets/clearError':
             return { ...state, error: null }
-        case 'coinAssets/setAll':
+        case 'coinAssets/setAssets':
             return { items: action.payload, loading: false, error: null }
-        case 'coinAssets/append':
+        case 'coinAssets/appendAssets':
             return { items: [...state.items, ...action.payload], loading: false, error: null }
         case 'coinAssets/setCurrent':
             return { ...state, currentItem: action.payload, loading: false, error: null }
@@ -29,11 +29,9 @@ export const fetchCoinAssets = (batchCount, search) => async (dispatch) => {
     const url = `/assets?limit=${BATCH_LIMIT}&offset=${offset}` + (!utils.isEmpty(search) ? `&search=${search}` : '')
     dispatch(acLoadingCoinAssets())
     try {
-        console.log('get:'+url)
         const { data } = await axios.get(url)
         const items = data.data
         if(Array.isArray(items) && items.length === 0 ) {
-            console.log('No more items')
             throw new Error('No more items')
         }
         if(batchCount === 0) {

@@ -1,6 +1,6 @@
 const utils = {
-    isEmpty: (str) => {
-        return !str || str === ''
+    isEmpty: (obj) => {
+        return !obj || obj === '' || (Array.isArray(obj) && obj.length === 0)
     },
 
     lastPathPiece: (pathname) => {
