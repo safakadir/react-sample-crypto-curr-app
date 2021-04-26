@@ -30,7 +30,7 @@ const SearchInput = ({ onSearch }) => {
             value={search}
             onChange={handleChange}
             onKeyDown={handleKey} />
-        <p className={'input-hint' + (!dirty ? ' invisible' : '')} >Press Enter to Search</p>
+        <p className={'input-hint mb-0' + (!dirty ? ' invisible' : '')} >Press Enter to Search</p>
       </form>
     );
 }

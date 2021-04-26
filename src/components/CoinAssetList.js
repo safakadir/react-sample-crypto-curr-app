@@ -45,9 +45,9 @@ const CoinAssetList = () => {
     return (
         <div style={{maxWidth:750, margin: 'auto', width: '50% !important'}}>
             <SearchInput onSearch={handleSearch} />
-            <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} loading={true} />
-            <div className="text-center">
-                <button type="button" className="btn btn-primary" onClick={handleLoadMore}>Load More</button>
+            <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} loading={loading} />
+            <div className="text-center mt-2">
+                <button type="button" className="btn btn-outline-primary" onClick={handleLoadMore}>Load More</button>
             </div>
         </div>
     );
