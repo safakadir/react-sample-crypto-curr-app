@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const Select = ({ items, value, onSelect, visualizor }) => {
+const Select = ({ items, value, onSelect, visualizor, variant }) => {
     const [open, setOpen] = useState(false)
     const [selectedItem, setSelectedItem] = useState(value)
 
@@ -16,7 +16,7 @@ const Select = ({ items, value, onSelect, visualizor }) => {
 
     return (
         <div className="btn-group dropstart">
-            <button className="btn btn-outline-secondary btn-sm dropdown-toggle" style={{width: 130}}
+            <button className={'btn btn-sm dropdown-toggle btn-outline-'+variant} style={{width: 130}}
                 type="button" onClick={handleToggle}>
                 { visualizor(selectedItem) }
             </button>
@@ -27,6 +27,10 @@ const Select = ({ items, value, onSelect, visualizor }) => {
             </ul>
         </div>
     )
+}
+
+Select.defaultProps = {
+    variant: 'secondary'
 }
 
 export default Select
