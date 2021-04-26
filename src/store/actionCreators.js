@@ -74,3 +74,8 @@ export const acSetRate = (rate) => {
         payload: rate
     }
 }
+export const acToggleTheme = () => {
+    return {
+        type: 'theme/toggle'
+    }
+}
