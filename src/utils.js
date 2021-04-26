@@ -22,7 +22,15 @@ const utils = {
         catch(e) {
             return value
         }
-    }
+    },
+
+    formatNumber: (number) => {
+        return new Intl.NumberFormat().format(parseFloat(number).toFixed(2))
+    },
+}
+
+utils.convertCurrency = (basePrice, rate, symbol) => {
+    return symbol+utils.formatNumber(basePrice/rate)
 }
 
 export default utils

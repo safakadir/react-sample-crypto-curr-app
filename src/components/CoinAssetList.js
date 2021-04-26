@@ -7,6 +7,8 @@ import { fetchCoinAssets } from '../store/coinAssetsSlice'
 import SearchInput from './fundamental/SearchInput'
 import Table from './fundamental/Table'
 
+import utils from '../utils'
+
 const CoinAssetList = () => {
 
     const [count, setCount] = useState(0)
@@ -30,7 +32,7 @@ const CoinAssetList = () => {
         { key: 'name', title: 'Name' },
         { key: 'symbol', title: 'Symbol' },
         { key: 'priceUsd', title: 'Price', enhance: number => {
-            return rateLoading ? '-' : selectedCurrency.cSymbol+parseFloat(number/currentRate.rateUsd).toFixed(2)
+            return rateLoading ? '-' : utils.convertCurrency(number, currentRate.rateUsd, selectedCurrency.cSymbol)
         }}
     ]
 
