@@ -11,6 +11,8 @@ const coinAssetsReducer = (state = INITIAL_STATE, action) => {
             return { ...state, loading: true, error: null }
         case 'coinAssets/error':
             return { ...state, loading: false, error: action.payload }
+        case 'coinAssets/clearError':
+            return { ...state, error: null }
         case 'coinAssets/setAll':
             return { items: action.payload, loading: false, error: null }
         case 'coinAssets/append':
@@ -27,16 +29,23 @@ export const fetchCoinAssets = (batchCount, search) => async (dispatch) => {
     const url = `/assets?limit=${BATCH_LIMIT}&offset=${offset}` + (!utils.isEmpty(search) ? `&search=${search}` : '')
     dispatch(acLoadingCoinAssets())
     try {
+        console.log('get:'+url)
         const { data } = await axios.get(url)
+        const items = data.data
+        if(Array.isArray(items) && items.length === 0 ) {
+            console.log('No more items')
+            throw new Error('No more items')
+        }
         if(batchCount === 0) {
-            dispatch(acSetAllCoinAssets(data.data)) 
+            dispatch(acSetAllCoinAssets(items)) 
         }
         else {
-            dispatch(acAppendCoinAssets(data.data)) 
+            dispatch(acAppendCoinAssets(items)) 
         } 
     }
     catch(error) {
-        dispatch(acErrorCoinAssets(error))
+        console.log(error)
+        dispatch(acErrorCoinAssets(error.message))
     } 
 }
 
@@ -47,7 +56,7 @@ export const fetchSingleAsset = (assetId) => async (dispatch) => {
         dispatch(acSetCurrentCoinAsset(data.data))
     }
     catch(error) {
-        dispatch(acErrorCoinAssets(error))
+        dispatch(acErrorCoinAssets(error.message))
     } 
 }
 

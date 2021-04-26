@@ -20,7 +20,6 @@ const CoinAssetList = () => {
     const [search, setSearch] = useState('')
     const coinAssets = useSelector(state => state.coinAssets.items)
     const loading = useSelector(state => state.coinAssets.loading)
-    const error = useSelector(state => state.coinAssets.error)
 
     const history = useHistory()
     const dispatch = useDispatch()

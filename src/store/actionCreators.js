@@ -32,6 +32,12 @@ export const acErrorCoinAssets = (error) => {
     }
 }
 
+export const acClearErrorCoinAssets = () => {
+    return {
+        type: 'coinAssets/clearError'
+    }
+}
+
 export const acNewPage = (pathname) => {
     return {
         type: 'navigation/newPage',

@@ -6,7 +6,9 @@ import CoinAssetList from './CoinAssetList'
 import CoinAssetDetail from './CoinAssetDetail'
 import FAQ from './FAQ'
 import About from './About'
-import { acNewPage } from '../store/actionCreators'
+import Toast from './fundamental/Toast'
+import { acClearErrorCoinAssets, acNewPage } from '../store/actionCreators'
+import utils from '../utils'
 
 const Main = () => {
 
@@ -18,6 +20,11 @@ const Main = () => {
     }, [location, dispatch])
 
     const pageTitle = useSelector(state => state.navigation.titleCmp)
+    const error = useSelector(state => state.coinAssets.error)
+
+    const clearError = () => {
+      dispatch(acClearErrorCoinAssets())
+    }
 
     return (
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -30,6 +37,7 @@ const Main = () => {
               <Route path="/about" component={About} />
               <Route path="/faq" component={FAQ} />
             </Switch>
+            { !utils.isEmpty(error) && <Toast title="Error" message={error} onClose={clearError} /> }
         </main>
     )
 }
