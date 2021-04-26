@@ -18,6 +18,7 @@ const CoinAssetList = () => {
     const rateLoading = useSelector(state => state.currency.loading)
     const selectedCurrency = useSelector(state => state.currency.selectedCurrency)
     const currentRate = useSelector(state => state.currency.currentRate)
+    const dark = useSelector(state => state.theme.dark)
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -53,7 +54,7 @@ const CoinAssetList = () => {
     return (
         <div className="sub-container mb-3">
             <SearchInput onSearch={handleSearch} />
-            <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} loading={assetsLoading || rateLoading} />
+            <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} loading={assetsLoading || rateLoading} dark={dark} />
             <div className="d-flex">
                 <div className="flex-grow-1" />
                 <button type="button" className="btn btn-outline-primary align-self-end" onClick={handleLoadMore}>Load More</button>

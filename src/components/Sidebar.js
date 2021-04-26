@@ -4,8 +4,10 @@ import pages from '../pages'
 
 const Sidebar = () => {
     const pageKey = useSelector(state => state.navigation.page.id)
+    const dark = useSelector(state => state.theme.dark)
+
     return (
-        <nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+        <nav className={'col-md-3 col-lg-2 d-md-block sidebar '+(dark ? 'bg-dark' : 'bg-light')}>
             <div className="position-sticky pt-0 pt-md-3">
                 <ul className="nav flex-column">
                     {pages.filter(item => !item.parent).map(item => (

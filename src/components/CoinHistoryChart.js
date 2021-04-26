@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { Line } from 'react-chartjs-2';
 import utils from '../utils';
 
-const CoinHistoryChart = ({ asset, title }) => {
+const CoinHistoryChart = ({ asset, title, dark }) => {
 
     const [history, setHistory] = useState([])
 
@@ -57,11 +57,23 @@ const CoinHistoryChart = ({ asset, title }) => {
             legend: { display: false }
         },
         scales: {
+            x: {
+                grid: {
+                    color: dark ? '#777' : '#ddd'
+                },
+                ticks: {
+                    color: dark ? '#eee' : undefined
+                }
+            },
             y: {
+                grid: {
+                    color: dark ? '#777' : '#ddd'
+                },
                 ticks: {
                     callback: function(value) {
                         return selectedCurrency.cSymbol + utils.formatNumber(value);
-                    }
+                    },
+                    color: dark ? '#eee' : undefined
                 }
             }
         }

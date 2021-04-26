@@ -123,3 +123,24 @@ body {
 .nav-item {
   border-bottom: 1px solid #dee2e6;
 } 
+
+.application {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.dark, .dark main {
+  background-color: #303030;
+  color: white;
+}
+
+.dark .sidebar .nav-link {
+  color: #eee;
+}
+
+.dark .sidebar .nav-link.active {
+  color: #007bff;
+}

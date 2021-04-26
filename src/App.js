@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import constants from './constants'
@@ -10,8 +11,10 @@ import Main from './components/Main'
 axios.defaults.baseURL = constants.baseURL
 
 function App() {
-  
+  const dark = useSelector(state => state.theme.dark)
+
   return (
+    <div className={'application' +(dark ? ' dark' : '')}>
     <Router>
       <Header />
       <div className="container-fluid">
@@ -21,6 +24,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </div>
   );
 }
 

@@ -17,6 +17,7 @@ const CoinAssetDetail = () => {
     const assetsLoading = useSelector(state => state.coinAssets.loading)
     const rateLoading = useSelector(state => state.currency.loading)
     const loading = assetsLoading || rateLoading
+    const dark = useSelector(state => state.theme.dark)
 
     const selectedCurrency = useSelector(state => state.currency.selectedCurrency)
     const currentRate = useSelector(state => state.currency.currentRate)
@@ -66,7 +67,7 @@ const CoinAssetDetail = () => {
                         <p>{asset.volumeUsd24Hr ? utils.convertCurrency(asset.volumeUsd24Hr, currentRate.rateUsd, selectedCurrency.cSymbol) : ''}</p>
                     </div>
                 </div>
-                <CoinHistoryChart title="Last 7 days" asset={asset} />
+                <CoinHistoryChart title="Last 7 days" asset={asset} dark={dark} />
             </div>)}
         </>
     )

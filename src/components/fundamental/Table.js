@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import ProgressBar from './ProgressBar'
 
-const Table = ({items, columns, onRowClick, loading}) => {
+const Table = ({items, columns, onRowClick, loading, dark}) => {
+
     return (
         <>
-        <table className="table table-responsive table-hover">
+        <table className={'table table-responsive table-hover'+(dark ? ' table-dark' : '')}>
             <thead>
                 <tr>
                     {columns.map(column => (
@@ -32,11 +33,13 @@ const Table = ({items, columns, onRowClick, loading}) => {
 Table.propTypes = {
     items: PropTypes.array.isRequired,
     columns: PropTypes.array.isRequired,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    dark: PropTypes.bool
 }
 
 Table.defaultProps = {
-    loading: false
+    loading: false,
+    dark: false
 }
 
 export default Table
