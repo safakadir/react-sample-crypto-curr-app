@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
+import { acSetCurrentCoinAsset } from '../store/actionCreators'
 import { fetchCoinAssets } from '../store/coinAssetsSlice'
 
 import SearchInput from './fundamental/SearchInput'
@@ -27,7 +28,7 @@ const CoinAssetList = () => {
     useEffect(() => {
         dispatch(fetchCoinAssets(0, search))
         setCount(0)
-    }, [search])
+    }, [search, dispatch])
 
     const handleLoadMore = () => {
         setCount(count+1)
@@ -39,15 +40,17 @@ const CoinAssetList = () => {
     }
 
     const handleCoinClick = (coinAsset) => {
+        dispatch(acSetCurrentCoinAsset(coinAsset))
         history.push('/coin/'+coinAsset.id)
     }
 
     return (
-        <div style={{maxWidth:750, margin: 'auto', width: '50% !important'}}>
+        <div className="sub-container mb-3">
             <SearchInput onSearch={handleSearch} />
             <Table items={coinAssets} columns={TABLE_COLUMNS} onRowClick={handleCoinClick} loading={loading} />
-            <div className="text-center mt-2">
-                <button type="button" className="btn btn-outline-primary" onClick={handleLoadMore}>Load More</button>
+            <div className="d-flex">
+                <div className="flex-grow-1" />
+                <button type="button" className="btn btn-outline-primary align-self-end" onClick={handleLoadMore}>Load More</button>
             </div>
         </div>
     );

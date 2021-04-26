@@ -5,6 +5,13 @@ export const acSetAllCoinAssets = (assets) => {
     }
 }
 
+export const acSetCurrentCoinAsset = (asset) => {
+    return {
+        type: 'coinAssets/setCurrent',
+        payload: asset
+    }
+}
+
 export const acAppendCoinAssets = (assets) => {
     return {
         type: 'coinAssets/append',

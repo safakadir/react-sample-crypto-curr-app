@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import utils from '../../utils'
 
 const SearchInput = ({ onSearch }) => {
     const [search, setSearch] = useState('')
@@ -8,7 +9,6 @@ const SearchInput = ({ onSearch }) => {
     const handleChange = (e) => {
         setSearch(e.target.value)
         setDirty(e.target.value !== lastSearched)
-        //console.log(`search:{}, lastSearched:{}, dirty:{}`)
     }
 
     const handleKey = (e) => {
@@ -30,7 +30,17 @@ const SearchInput = ({ onSearch }) => {
             value={search}
             onChange={handleChange}
             onKeyDown={handleKey} />
-        <p className={'input-hint mb-0' + (!dirty ? ' invisible' : '')} >Press Enter to Search</p>
+
+            <div className="px-2 d-flex justify-content-between">
+                { !utils.isEmpty(lastSearched) && 
+                    <div>
+                        <span style={{fontWeight: 'bold'}}>Currently viewing:</span> {lastSearched}
+                        <button className="btn" style={{marginTop:-2}}><i className="bi-x-circle"></i></button>
+                    </div>
+                }
+                <div className="flex-grow-1" />
+                <p className={'input-hint mb-0 mt-1' + (!dirty ? ' invisible' : '')} >Press Enter to Search</p>
+            </div>
       </form>
     );
 }

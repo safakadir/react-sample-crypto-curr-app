@@ -15,7 +15,7 @@ const Main = () => {
 
     useEffect(() => {
         dispatch(acNewPage(location.pathname))
-    }, [location])
+    }, [location, dispatch])
 
     const pageTitle = useSelector(state => state.navigation.titleCmp)
 
