@@ -36,7 +36,7 @@ const CoinAssetDetail = () => {
     return (
         <>
             { loading && <ProgressBar className="mt-2" /> } 
-            { !!asset && (<div className="pt-1 pb-5">
+            { !loading && !!asset && (<div className="pt-1 pb-5">
                 <div className="d-flex flex-column flex-md-row align-items-center justify-content-around">
                     <div className="d-flex flex-column align-items-center">
                         <h1>#{asset.rank}</h1>

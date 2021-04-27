@@ -11,8 +11,8 @@ const initialCurrencyId = utils.readStorage('currencyId', constants.baseCurrency
 
 const INITIAL_STATE = { 
     selectedCurrency: findCurrency(initialCurrencyId),
-    currentRate: constants.unitCurrencyRate,
-    loading: false,
+    currentRate: constants.unitCurrencyRate.id === initialCurrencyId ? constants.unitCurrencyRate : null,
+    loading: constants.unitCurrencyRate.id !== initialCurrencyId,
     error: null
 }
 

@@ -19,9 +19,13 @@ const Main = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const selectedCurrency = useSelector(state => state.currency.selectedCurrency)
+    const currentRate = useSelector(state => state.currency.currentRate)
 
     useEffect(() => {
-        dispatch(acNewPage(location.pathname))
+      if(!currentRate) {
+        dispatch(fetchRate(selectedCurrency.id))
+      }
+      dispatch(acNewPage(location.pathname))
     }, [location, dispatch])
 
     const pageTitle = useSelector(state => state.navigation.titleCmp)
