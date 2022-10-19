@@ -20,6 +20,11 @@ const pages = [
         id: "faq",
         title: "FAQ",
         path: "/faq"
+    },
+    {
+        id: "sandbox",
+        title: "Sandbox",
+        path: "/sandbox"
     }
 ]
 

@@ -2,17 +2,18 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, Switch, Route } from 'react-router-dom'
 
-import CoinAssetList from './CoinAssetList'
-import CoinAssetDetail from './CoinAssetDetail'
-import FAQ from './FAQ'
-import About from './About'
-import Toast from './fundamental/Toast'
-import Select from './fundamental/Select'
+import CoinAssetList from './pages/CoinAssetList'
+import CoinAssetDetail from './pages/CoinAssetDetail'
+import FAQ from './pages/FAQ'
+import About from './pages/About'
+import Sandbox from './pages/Sandbox'
+import Toast from './components/fundamental/Toast'
+import Select from './components/fundamental/Select'
 
-import { acClearErrorCoinAssets, acNewPage, acSetCurrency } from '../store/actionCreators'
-import { fetchRate } from '../store/currencySlice'
-import utils from '../utils'
-import constants from '../constants'
+import { acClearErrorCoinAssets, acNewPage, acSetCurrency } from './store/actionCreators'
+import { fetchRate } from './store/currencySlice'
+import utils from './utils'
+import constants from './constants'
 
 const Main = () => {
 
@@ -56,6 +57,7 @@ const Main = () => {
               <Route path="/coin/:id" component={CoinAssetDetail} />
               <Route path="/about" component={About} />
               <Route path="/faq" component={FAQ} />
+              <Route path="/sandbox" component={Sandbox} />
             </Switch>
             { !utils.isEmpty(error) && <Toast title="Error" message={error} onClose={clearError} /> }
         </main>

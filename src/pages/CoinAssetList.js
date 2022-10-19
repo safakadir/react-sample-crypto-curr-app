@@ -4,8 +4,8 @@ import { useHistory } from 'react-router'
 import { acSetCurrentCoinAsset } from '../store/actionCreators'
 import { fetchCoinAssets } from '../store/coinAssetsSlice'
 
-import SearchInput from './fundamental/SearchInput'
-import Table from './fundamental/Table'
+import SearchInput from '../components/fundamental/SearchInput'
+import Table from '../components/fundamental/Table'
 
 import utils from '../utils'
 

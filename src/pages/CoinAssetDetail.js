@@ -4,9 +4,9 @@ import { useLocation } from "react-router"
 import { acAppendPageTitle } from '../store/actionCreators'
 import { fetchSingleAsset } from '../store/coinAssetsSlice'
 import utils from '../utils'
-import CoinHistoryChart from './CoinHistoryChart'
+import CoinHistoryChart from '../components/CoinHistoryChart'
 
-import ProgressBar from './fundamental/ProgressBar'
+import ProgressBar from '../components/fundamental/ProgressBar'
 
 const CoinAssetDetail = () => {
     const location = useLocation()
