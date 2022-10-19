@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { acToggleTheme } from '../store/actionCreators'
+import { toggleTheme } from '../store/themeSlice'
 
 const Header = () => {
     const dispatch = useDispatch()
     const dark = useSelector(state => state.theme.dark)
 
     const handleToggleTheme = () => {
-        dispatch(acToggleTheme())
+        dispatch(toggleTheme())
         localStorage.setItem('dark', !dark)
     }
 

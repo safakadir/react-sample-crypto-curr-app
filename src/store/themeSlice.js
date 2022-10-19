@@ -1,14 +1,18 @@
+import { createSlice } from '@reduxjs/toolkit'
+
 import utils from "../utils"
 
-const INITIAL_STATE = { dark: utils.readStorage('dark', false)}
 
-const themeReducer = (state = INITIAL_STATE, action) => {
-    switch(action.type) {
-        case 'theme/toggle':
-            return {...state, dark: !state.dark}
-        default:
-            return state
+export const themeSlice = createSlice({
+    name: "theme",
+    initialState: { dark: utils.readStorage('dark', false)},
+    reducers: {
+        toggleTheme: state => {
+            state.dark = !state.dark
+        }
     }
-}
+})
 
-export default themeReducer
+export const { toggleTheme } = themeSlice.actions
+
+export default themeSlice.reducer

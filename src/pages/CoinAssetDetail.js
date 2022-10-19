@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from "react-router"
-import { acAppendPageTitle } from '../store/actionCreators'
-import { fetchSingleAsset } from '../store/coinAssetsSlice'
+import { appendPageTitle } from '../store/navigationSlice'
+import { fetchSingleAsset } from '../store/helpers'
 import utils from '../utils'
 import CoinHistoryChart from '../components/CoinHistoryChart'
 
@@ -27,7 +27,7 @@ const CoinAssetDetail = () => {
             dispatch(fetchSingleAsset(assetId))
         }
         else {
-            dispatch(acAppendPageTitle(asset.symbol))
+            dispatch(appendPageTitle(asset.symbol))
         }
     }, [asset, assetId, dispatch])
 

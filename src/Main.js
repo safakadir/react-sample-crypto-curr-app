@@ -10,8 +10,10 @@ import Sandbox from './pages/Sandbox'
 import Toast from './components/fundamental/Toast'
 import Select from './components/fundamental/Select'
 
-import { acClearErrorCoinAssets, acNewPage, acSetCurrency } from './store/actionCreators'
-import { fetchRate } from './store/currencySlice'
+import { clearCoinAssetsError } from './store/coinAssetsSlice'
+import { setCurrency } from './store/currencySlice'
+import { newPage } from './store/navigationSlice'
+import { fetchRate } from './store/helpers'
 import utils from './utils'
 import constants from './constants'
 
@@ -26,18 +28,18 @@ const Main = () => {
       if(!currentRate) {
         dispatch(fetchRate(selectedCurrency.id))
       }
-      dispatch(acNewPage(location.pathname))
+      dispatch(newPage(location.pathname))
     }, [location, dispatch])
 
     const pageTitle = useSelector(state => state.navigation.titleCmp)
     const error = useSelector(state => state.coinAssets.error)
 
     const clearError = () => {
-      dispatch(acClearErrorCoinAssets())
+      dispatch(clearCoinAssetsError())
     }
 
     const handleCurrencySelect = (currency) => {
-      dispatch(acSetCurrency(currency.id))
+      dispatch(setCurrency(currency.id))
       dispatch(fetchRate(currency.id))
       localStorage.setItem('currencyId', currency.id)
     }

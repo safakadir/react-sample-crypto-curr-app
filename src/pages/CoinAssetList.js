@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import { acSetCurrentCoinAsset } from '../store/actionCreators'
-import { fetchCoinAssets } from '../store/coinAssetsSlice'
+import { setCurrentCoinAsset } from '../store/coinAssetsSlice'
+import { fetchCoinAssets } from '../store/helpers'
 
 import SearchInput from '../components/fundamental/SearchInput'
 import Table from '../components/fundamental/Table'
@@ -47,7 +47,7 @@ const CoinAssetList = () => {
     }
 
     const handleCoinClick = (coinAsset) => {
-        dispatch(acSetCurrentCoinAsset(coinAsset))
+        dispatch(setCurrentCoinAsset(coinAsset))
         history.push('/coin/'+coinAsset.id)
     }
 

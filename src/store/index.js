@@ -1,9 +1,17 @@
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit'
 
-import reducers from './reducers'
+import coinAssetsReducer from './coinAssetsSlice'
+import currencyReducer from './currencySlice'
+import navigationReducer from './navigationSlice'
+import themeReducer from './themeSlice'
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
+const store = configureStore({
+    reducer: {
+        coinAssets: coinAssetsReducer,
+        navigation: navigationReducer,
+        currency: currencyReducer,
+        theme: themeReducer
+    }
+})
 
 export default store
